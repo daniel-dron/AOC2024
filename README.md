@@ -16,7 +16,9 @@ we can solve day 1 part 1 with:
 
 $$\sum_{i = 1}^{n}(\left| x_i - y_i\right|)$$
 
-In code (c++):
+<details>
+<summary>Code (c++)</summary>
+
 ```c++
 std::sort(left.begin(), left.end());
 std::sort(right.begin(), right.end());
@@ -26,6 +28,7 @@ for(const auto [l, r] : std::views::zip(left, right)) {
     distance += std::abs(l - r);
 }
 ```
+</details>
 
 ## Part 2
 
@@ -40,6 +43,9 @@ $$ \sum_{i = 1}^{n} (x_i * \left| \lbrace r \in R : r = x_i \rbrace \right|) $$
 
 An optimization can be done in code, using sorted L and R, by caching the value from the last summation iteration to reuse its contribution to the total sum, incase $x_i$ is the same.
 
+<details>
+<summary>Code (c++)</summary>
+    
 ```c++
 int sum = {};
 
@@ -58,3 +64,4 @@ for (auto l : left) {
     sum += last_s;
 }
 ```
+</details>
