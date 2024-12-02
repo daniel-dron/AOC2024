@@ -4,16 +4,19 @@
 
 Given:
 
-![equation](https://latex.codecogs.com/svg.image?L=%5Cbegin%7Bbmatrix%7Dx_1&x_2&x_3&...&x_n%5C%5C%5Cend%7Bbmatrix%7D)
+$$ L = \begin{bmatrix} x_1 & x_2 & x_3 & ... & x_n \end{bmatrix}  $$
+$$ R = \begin{bmatrix} y_1 & y_2 & y_3 & ... & y_n \end{bmatrix}  $$
 
-![equation](https://latex.codecogs.com/svg.image?R=%5Cbegin%7Bbmatrix%7Dy_1&y_2&y_3&...&y_n%5C%5C%5Cend%7Bbmatrix%7D)
+where L are the numbers on the left, and R are the numbers on the right
 
-and `L = sort(L), R = sort(R)`
+$$ L = sort(L) $$
+$$ R = sort(R) $$
 
 we can solve day 1 part 1 with:
 
-![equation](https://latex.codecogs.com/svg.image?%5Csum_%7Bi=1%7D%5E%7Bn%7D(%5Cleft%7Cx_i-y_i%5Cright%7C))
+$$\sum_{i = 1}^{n}(\left| x_i - y_i\right|)$$
 
+In code (c++):
 ```c++
 std::sort(left.begin(), left.end());
 std::sort(right.begin(), right.end());
@@ -26,17 +29,16 @@ for(const auto [l, r] : std::views::zip(left, right)) {
 
 ## Part 2
 
-![equation](https://latex.codecogs.com/svg.image?L=%5Cbegin%7Bbmatrix%7Dx_1&x_2&x_3&...&x_n%5C%5C%5Cend%7Bbmatrix%7D)
+Given:
 
-![equation](https://latex.codecogs.com/svg.image?R=%5Cbegin%7Bbmatrix%7Dy_1&y_2&y_3&...&y_n%5C%5C%5Cend%7Bbmatrix%7D)
+$$ L = \begin{bmatrix} x_1 & x_2 & x_3 & ... & x_n \end{bmatrix}  $$
+$$ R = \begin{bmatrix} y_1 & y_2 & y_3 & ... & y_n \end{bmatrix}  $$
 
-and `L = sort(L), R = sort(R)`
+where L are the numbers on the left, and R are the numbers on the right, we can solve day 1 part 2 with:
 
-we can solve day 1 part 2 with:
+$$ \sum_{i = 1}^{n} (x_i * \left| \lbrace r \in R : r = x_i \rbrace \right|) $$
 
-![equation](https://latex.codecogs.com/svg.image?%5Csum_%7Bi=1%7D%5E%7Bn%7D(x_i*%5Cleft%7C%5Cleft%5C%7Br%5Cin%20R:r=x_i%5Cright%5C%7D%5Cright%7C))
-
-An optimization can be done in code by caching the value from the last summation iteration to reuse incase `l` is the same.
+An optimization can be done in code, using sorted L and R, by caching the value from the last summation iteration to reuse its contribution to the total sum, incase $x_i$ is the same.
 
 ```c++
 int sum = {};
