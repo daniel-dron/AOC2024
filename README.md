@@ -65,3 +65,60 @@ for (auto l : left) {
 }
 ```
 </details>
+
+# Day 2
+
+## Part 1
+
+Given a report as a sequence S:
+$$ S = \begin{pmatrix} s_1 & s_2 & s_3 & ... & s_n \\ \end{pmatrix} $$
+
+a report is safe if and only if:
+$$
+Safe(S) =
+\begin{cases}
+1 & \text{if\ } \forall i \in [1, n-1] : (0 < \left| s_i - s_{i+1} \right| <= 3) \wedge  (sign(s_1 - s_2) = sign(s_i - s_{i+1}))), \\
+0 & \text{otherwise}.
+\end{cases}
+$$
+
+then, given a set of reports R, we can find the count of safe reports with:
+$$ \sum_{s \in R} \text{Safe}(S)  $$
+
+<details>
+<summary>Code (c++)</summary>
+
+I tried implementing it using a bit of functional modern c++. In the repo above, you can find a better optimized solution.
+```c++
+bool is_report_safe(std::span<const int> report) {
+    if (report.size() < 2) return false;
+    
+    const bool is_decreasing = report[0] > report[1];
+    
+    return std::adjacent_find(report.begin(), report.end(), 
+        [is_decreasing](int a, int b) {
+            const auto diff = a - b;
+            return diff == 0 || std::abs(diff) > 3 || is_decreasing != (diff > 0);
+        }) == report.end();
+}
+
+int main() {
+    std::ifstream file("day2.txt");
+    std::vector<std::vector<int>> reports;
+    
+    for (std::string line; std::getline(file, line);) {
+        std::vector<int> nums;
+        std::istringstream iss(line);
+        for (int n; iss >> n;) {
+            nums.push_back(n);
+        }
+        reports.push_back(std::move(nums));
+    }
+    
+    const auto safe_count = std::count_if(reports.begin(), reports.end(),
+        [](const auto& report) { return is_report_safe(report); });
+    
+    printf("safe: %ld\n", safe_count);
+}
+```
+</details>
