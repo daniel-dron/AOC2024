@@ -71,9 +71,11 @@ for (auto l : left) {
 ## Part 1
 
 Given a report as a sequence S:
+
 $$ S = \begin{pmatrix} s_1 & s_2 & s_3 & ... & s_n \\ \end{pmatrix} $$
 
 a report is safe if and only if:
+
 $$
 Safe(S) =
 \begin{cases}
@@ -83,6 +85,7 @@ Safe(S) =
 $$
 
 then, given a set of reports R, we can find the count of safe reports with:
+
 $$ \sum_{s \in R} \text{Safe}(S)  $$
 
 <details>
