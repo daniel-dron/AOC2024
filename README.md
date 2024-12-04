@@ -149,3 +149,31 @@ $$ S_{(j)} = (x_i : i \in \left [ 1, n \right ] : i \neq j ) $$
 So, given a set of reports R, we can find the count of safe reports with:
 
 $$ \sum_{s \in R} DSafe(S)  $$
+
+# Day 3
+
+## Part 1
+
+This one is a lot more complex due to being filled with imperative logic. I still tried my best, but I would be surprised if there wasn't 1001 things that could be done better.
+
+Let M(i) be the function that checks and parses for mul(x, y):
+
+$$
+M(i) =
+\begin{cases}
+1 & \text{if\ } S[i, i+4] = "mul(" \ \wedge \\
+& S[j] = "," \ \wedge \\
+& S[k] = ")" \ \wedge \\
+& \exists x, y \in [0, 999] \ \wedge \\
+& \exists i, j \in [i+4, n-1] \ \text{where}\\
+& \quad S[i+4, j] \  \text{matches} [0, 9]\{1, 3\}(x) \ \wedge \\
+& \quad S[j + 1, k] \  \text{matches} [0, 9]\{1, 3\}(y) \ \wedge \\
+0 & \text{otherwise}.
+\end{cases}
+$$
+
+Then we can find the solution with:
+
+$$ \sum_{i = 0}^{n}M(i) $$
+
+where n is the length of characters in memory S.
