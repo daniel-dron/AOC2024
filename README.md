@@ -167,7 +167,7 @@ M(i) =
 & \exists x, y \in [0, 999] \ \wedge \\
 & \exists i, j \in [i+4, n-1] \ \text{where}\\
 & \quad S[i+4, j] \  \text{matches} [0, 9]\{1, 3\}(x) \ \wedge \\
-& \quad S[j + 1, k] \  \text{matches} [0, 9]\{1, 3\}(y) \ \wedge \\
+& \quad S[j + 1, k] \  \text{matches} [0, 9]\{1, 3\}(y) \\
 0 & \text{otherwise}.
 \end{cases}
 $$
