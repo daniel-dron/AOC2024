@@ -9,7 +9,7 @@
 #include <numeric>
 
 int main() {
-  std::ifstream file("day1.txt");
+  std::ifstream file("data.txt");
   file.tie(nullptr);
   std::ios::sync_with_stdio(false);
 

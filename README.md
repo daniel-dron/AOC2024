@@ -125,3 +125,27 @@ int main() {
 }
 ```
 </details>
+
+
+## Part 2
+
+Building on Part 1, the definition of a report sequence and Safe(S) remain identical.
+
+To account for the Problem Dampener safety check, a report is then Dampened Safe if and only if:
+
+$$
+DSafe(S) =
+\begin{cases}
+1 & \text{if\ } Safe(S), \\
+1 & \text{if\ }, \exists j \in \left [ 1, n \right ] : Safe(S_{(j)})\\
+0 & \text{otherwise}.
+\end{cases}
+$$
+
+where,
+
+$$ S_{(j)} = (x_i : i \in \left [ 1, n \right ] : i \neq j ) $$
+
+So, given a set of reports R, we can find the count of safe reports with:
+
+$$ \sum_{s \in R} DSafe(S)  $$

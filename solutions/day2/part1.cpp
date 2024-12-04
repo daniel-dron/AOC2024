@@ -18,7 +18,7 @@ bool is_report_safe(std::span<const int> report) {
 }
 
 int main() {
-    std::ifstream file("day2.txt");
+    std::ifstream file("data.txt");
     std::vector<std::vector<int>> reports;
     
     for (std::string line; std::getline(file, line);) {
